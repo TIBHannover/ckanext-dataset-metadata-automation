@@ -16,4 +16,5 @@ class DatasetMetadataAutomationPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
 
-        return {'get_user_name': Helper.get_user_name}
+        return {'get_user_name': Helper.get_user_name,
+            'get_user_email': Helper.get_user_email}
