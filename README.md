@@ -1,3 +1,6 @@
+[![CI](https://github.com/TIBHannover/ckanext-dataset-metadata-automation/actions/workflows/test.yml/badge.svg)](https://github.com/TIBHannover/ckanext-dataset-metadata-automation/actions/workflows/test.yml)
+
+
 # ckanext-dataset-metadata-automation
 
 The CKAN plugin for pre-filling some of the dataset metadata for a user.
