@@ -47,7 +47,28 @@ To temporary patch the CKAN configuration for the duration of a test you can use
     def test_some_action():
         pass
 """
-import ckanext.dataset_metadata_automation.plugin as plugin
+from types import SimpleNamespace
 
-def test_plugin():
-    pass
+import ckanext.dataset_metadata_automation.libs as libs
+from ckanext.dataset_metadata_automation.libs import Helper
+
+def test_helpers_return_current_user_metadata(monkeypatch):
+    monkeypatch.setattr(
+        libs.toolkit,
+        "g",
+        SimpleNamespace(
+            userobj=SimpleNamespace(
+                fullname="Example User", email="user@example.test"
+            )
+        ),
+    )
+
+    assert Helper.get_user_name() == "Example User"
+    assert Helper.get_user_email() == "user@example.test"
+
+
+def test_helpers_handle_missing_user_object(monkeypatch):
+    monkeypatch.setattr(libs.toolkit, "g", SimpleNamespace())
+
+    assert Helper.get_user_name() == ""
+    assert Helper.get_user_email() == ""
